@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PanzerSports Clone</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0b0c0d;
+  color: #fff;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  background: #111;
+  border-bottom: 1px solid #222;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 22px;
+  color: #4caf50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 65px);
+}
+
+.video-area {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  padding: 20px;
+}
+
+.video-box {
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  max-height: 675px;
+  border-radius: 15px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  overflow: hidden;
+  border: 1px solid #222;
+}
+
+.sidebar {
+  flex: 1;
+  min-width: 350px;
+  max-width: 450px;
+  padding: 20px;
+  overflow-y: auto;
+  background: #0b0c0d;
+  border-left: 1px solid #222;
+}
+
+.search input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #222;
+  background: #111;
+  color: #fff;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #222;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+  color: #aaa;
+}
+
+.tab.active {
+  background: #4caf50;
+  color: #000;
+  font-weight: bold;
+}
+
+.channel {
+  background: #151617;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 1px solid transparent;
+}
+
+.channel:hover {
+  background: #1c1e1f;
+  border-color: #333;
+}
+
+.channel img {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  margin-right: 15px;
+  object-fit: contain;
+  background: #000;
+}
+
+.channel-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.channel-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #eee;
+}
+
+.channel-category {
+  font-size: 11px;
+  color: #777;
+  margin-top: 2px;
+}
+
+.badge {
+  background: #222;
+  color: #999;
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  border: 1px solid #333;
+}
+
+.hidden {
+  display: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span>▶</span> PanzerSports</h1>
+</header>
+
+<div class="container">
+  <div class="video-area">
+    <div class="video-box" id="player">
+      <div style="text-align:center">
+        <div style="font-size: 40px; margin-bottom: 10px;">📺</div>
+        İzlemek istediğiniz kanalı listeden seçin
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="search">
+      <input type="text" placeholder="Kanal veya maç ara...">
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('kanallar')">Kanallar</div>
+      <div class="tab" onclick="switchTab('maclar')">Günün Maçları</div>
+    </div>
+
+    <div id="kanallar-list">
+      
+      <div class="channel" onclick="play('https://www.m3u8player.online/embed/m3u8?url=https://noisy-cake-8ebc.travestigamzes.workers.dev/https://corestream.ronaldovurdu.help//hls/bein-sports-11.m3u8')">
+        <img src="https://downloadr2.apkmirror.com/wp-content/uploads/2023/08/65/64d12cc185a4f_ptv.bein.ui.png" alt="bein">
+        <div class="channel-info">
+          <span class="channel-name">Bein Sports 1</span>
+          <span class="channel-category">Spor</span>
+        </div>
+        <span class="badge">HD</span>
+      </div>
+
+      <div class="channel" onclick="play('https://www.m3u8player.online/embed/m3u8?url=https://noisy-cake-8ebc.travestigamzes.workers.dev/https://corestream.ronaldovurdu.help//hls/bein-sports-2.m3u8')">
+        <img src="https://downloadr2.apkmirror.com/wp-content/uploads/2023/08/65/64d12cc185a4f_ptv.bein.ui.png" alt="bein">
+        <div class="channel-info">
+          <span class="channel-name">Bein Sports 2</span>
+          <span class="channel-category">Spor</span>
+        </div>
+        <span class="badge">HD</span>
+      </div>
+
+      <div class="channel" onclick="play('https://www.m3u8player.online/embed/m3u8?url=https://noisy-cake-8ebc.travestigamzes.workers.dev/https://corestream.ronaldovurdu.help//hls/bein-sports-3.m3u8')">
+        <img src="https://downloadr2.apkmirror.com/wp-content/uploads/2023/08/65/64d12cc185a4f_ptv.bein.ui.png" alt="bein">
+        <div class="channel-info">
+          <span class="channel-name">Bein Sports 3</span>
+          <span class="channel-category">Spor</span>
+        </div>
+        <span class="badge">HD</span>
+      </div>
+
+      <div class="channel" onclick="play('https://www.m3u8player.online/embed/m3u8?url=https://noisy-cake-8ebc.travestigamzes.workers.dev/https://corestream.ronaldovurdu.help//hls/bein-sports-4.m3u8')">
+        <img src="https://downloadr2.apkmirror.com/wp-content/uploads/2023/08/65/64d12cc185a4f_ptv.bein.ui.png" alt="bein">
+        <div class="channel-info">
+          <span class="channel-name">Bein Sports 4</span>
+          <span class="channel-category">Spor</span>
+        </div>
+        <span class="badge">HD</span>
+      </div>
+
+      <div class="channel" onclick="play('https://www.m3u8player.online/embed/m3u8?url=https://noisy-cake-8ebc.travestigamzes.workers.dev/https://corestream.ronaldovurdu.help//hls/bein-sports-5.m3u8')">
+        <img src="https://downloadr2.apkmirror.com/wp-content/uploads/2023/08/65/64d12cc185a4f_ptv.bein.ui.png" alt="bein">
+        <div class="channel-info">
+          <span class="channel-name">Bein Sports 5</span>
+          <span class="channel-category">Spor</span>
+        </div>
+        <span class="badge">HD</span>
+      </div>
+
+      <div class="channel" onclick="play('https://www.m3u8player.online/embed/m3u8?url=https://noisy-cake-8ebc.travestigamzes.workers.dev/https://corestream.ronaldovurdu.help//hls/bein-sports-max-1.m3u8')">
+        <img src="https://downloadr2.apkmirror.com/wp-content/uploads/2023/08/65/64d12cc185a4f_ptv.bein.ui.png" alt="bein">
+        <div class="channel-info">
+          <span class="channel-name">Bein Sports Max 1</span>
+          <span class="channel-category">Spor</span>
+        </div>
+        <span class="badge">HD</span>
+      </div>
+
+      <div class="channel" onclick="play('https://www.m3u8player.online/embed/m3u8?url=https://noisy-cake-8ebc.travestigamzes.workers.dev/https://corestream.ronaldovurdu.help//hls/bein-sports-max-2.m3u8')">
+        <img src="https://downloadr2.apkmirror.com/wp-content/uploads/2023/08/65/64d12cc185a4f_ptv.bein.ui.png" alt="bein">
+        <div class="channel-info">
+          <span class="channel-name">Bein Sports Max 2</span>
+          <span class="channel-category">Spor</span>
+        </div>
+        <span class="badge">HD</span>
+      </div>
+
+      <div class="channel" onclick="play('https://www.m3u8player.online/embed/m3u8?url=https://noisy-cake-8ebc.travestigamzes.workers.dev/https://corestream.ronaldovurdu.help//hls/s-sport.m3u8')">
+        <img src="https://yt3.googleusercontent.com/gvJvmHjz_AD2oWOrKpMHrc6PkrPaf9ZJn714gU1hOYxOh7XWqLbSjwniRy9wXxs0R6vyIFsCivA=s900-c-k-c0x00ffffff-no-rj" alt="ssport">
+        <div class="channel-info">
+          <span class="channel-name">S Sport</span>
+          <span class="channel-category">Spor</span>
+        </div>
+        <span class="badge">HD</span>
+      </div>
+
+      <div class="channel" onclick="play('https://www.m3u8player.online/embed/m3u8?url=https://noisy-cake-8ebc.travestigamzes.workers.dev/https://corestream.ronaldovurdu.help//hls/s-sport-2.m3u8')">
+        <img src="https://yt3.googleusercontent.com/gvJvmHjz_AD2oWOrKpMHrc6PkrPaf9ZJn714gU1hOYxOh7XWqLbSjwniRy9wXxs0R6vyIFsCivA=s900-c-k-c0x00ffffff-no-rj" alt="ssport">
+        <div class="channel-info">
+          <span class="channel-name">S Sport 2</span>
+          <span class="channel-category">Spor</span>
+        </div>
+        <span class="badge">HD</span>
+      </div>
+
+    </div>
+
+    <div id="maclar-list" class="hidden">
+      <div class="channel" onclick="play('https://www.m3u8player.online/embed/m3u8?url=https://noisy-cake-8ebc.travestigamzes.workers.dev/https://corestream.ronaldovurdu.help//hls/s-sport.m3u8')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/LaLiga_EA_Sports_2023_Vertical_Logo.svg" alt="laliga">
+        <div class="channel-info">
+          <span class="channel-name">Barcelona - Vallecano</span>
+          <span class="channel-category">La Liga</span>
+        </div>
+        <span class="badge">CANLI</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function play(url) {
+  document.getElementById('player').innerHTML = `<iframe width="100%" height="100%" src="${url}" frameborder="0" allowfullscreen></iframe>`;
+}
+
+function switchTab(tabName) {
+  const kanallar = document.getElementById('kanallar-list');
+  const maclar = document.getElementById('maclar-list');
+  const tabs = document.querySelectorAll('.tab');
+
+  tabs.forEach(tab => tab.classList.remove('active'));
+
+  if (tabName === 'kanallar') {
+    kanallar.classList.remove('hidden');
+    maclar.classList.add('hidden');
+    tabs[0].classList.add('active');
+  } else {
+    kanallar.classList.add('hidden');
+    maclar.classList.remove('hidden');
+    tabs[1].classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>
